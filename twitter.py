@@ -5,14 +5,13 @@ import _json
 from requests_oauthlib import OAuth1
 import requests
 import os
-from async_upload import VideoTweet
 
 class Twitter:
     def __init__(self):
         print("initializing twitter....")
         self.inits = tweepy.OAuthHandler(constants.CONSUMER_KEY, constants.CONSUMER_SCRET)
         self.inits.set_access_token(constants.ACCESS_KEY, constants.ACCESS_SCRET)
-        self.api = tweepy.API(self.inits)
+        self.api = tweepy.API(self.inits, wait_on_rate_limit=True)
 
 
     def read_dm(self):
@@ -57,12 +56,12 @@ class Twitter:
                     #     dms.reverse()
 
             print(str(len(dms)) + " collected")
-            # time.sleep(10)
+            time.sleep(10)
             return dms
 
         except Exception as ex:
             print(ex)
-            # time.sleep(3)
+            time.sleep(10)
             pass
 
 
@@ -70,10 +69,10 @@ class Twitter:
         print("Deleting dm with id = "+ str(id))
         try:
             self.api.destroy_direct_message(id)
-            # time.sleep(1)
+            time.sleep(10)
         except Exception as ex:
             print(ex)
-            # time.sleep(1)
+            time.sleep(10)
             pass
 
 

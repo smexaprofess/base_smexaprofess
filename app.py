@@ -1,9 +1,6 @@
 from twitter import Twitter
 import time
 
-# deploy lagi
-# kok gak keapus di DM nya
-
 tw = Twitter()
 
 def start():
@@ -41,8 +38,8 @@ def start():
         else:
             print("Direct message is empty...")
             dms = tw.read_dm()
-            # if len(dms) == 0:
-            #     time.sleep(3)
+            if len(dms) == 0:
+                time.sleep(30)
 
 if __name__ == "__main__":
     start()
