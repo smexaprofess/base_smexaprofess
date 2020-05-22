@@ -62,7 +62,7 @@ class Twitter:
 
         except Exception as ex:
             print(ex)
-            time.sleep(10)
+            time.sleep(3)
             pass
 
 
