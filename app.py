@@ -1,7 +1,8 @@
 from twitter import Twitter
 import time
 
-#test pancing ke heroku supaya keluar dyno
+# deploy lagi
+# kok gak keapus di DM nya
 
 tw = Twitter()
 
