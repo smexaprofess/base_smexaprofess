@@ -22,18 +22,18 @@ def start():
                             if dms[i]['media'] is None:
                                 print("DM will be posted")
                                 tw.post_tweet(message)
-                                #delete dm
+                                tw.delete_dm()
                             else:
                                 print("DM will be posted with media")
                                 print(dms[i]['shorted_media_url'])
                                 tw.post_tweet_with_media(message, dms[i]['media'],dms[i]['shorted_media_url'], dms[i]['type'])
-                                #delete dm
+                                tw.delete_dm()
                         else:
                             print("DM deleted because its empty..")
-                            #delete dm
+                            tw.delete_dm()
                     else:
                         print("DM will be deleted because does not contains keyword..")
-                        #delete dm
+                        tw.delete_dm()
 
             dms = list()
 
@@ -41,7 +41,7 @@ def start():
             print("Direct message is empty...")
             dms = tw.read_dm()
             if len(dms) == 0:
-                time.sleep(30)
+                time.sleep(10)
 
 if __name__ == "__main__":
     start()

@@ -45,24 +45,24 @@ class Twitter:
                         d = dict(message=message, sender_id=sender_id, id=dm[x].id, media = attachment['media']['media_url'], shorted_media_url = attachment['media']['url'], type = 'photo')
                         dms.append(d)
                         dms.reverse()
-                    elif media_type == 'video':
-                        print("Its a video")
-                        attachment = dm[x].message_create['message_data']['attachment']
-                        media = dm[x].message_create['message_data']['attachment']['media']
-                        media_url = media['video_info']['variants'][0]
-                        video_url = media_url['url']
-                        print("video url : " + str(video_url))
-                        d = dict(message=message, sender_id=sender_id, id=dm[x].id, media = video_url, shorted_media_url = attachment['media']['url'], type = 'video')
-                        dms.append(d)
-                        dms.reverse()
+                    # elif media_type == 'video':
+                    #     print("Its a video")
+                    #     attachment = dm[x].message_create['message_data']['attachment']
+                    #     media = dm[x].message_create['message_data']['attachment']['media']
+                    #     media_url = media['video_info']['variants'][0]
+                    #     video_url = media_url['url']
+                    #     print("video url : " + str(video_url))
+                    #     d = dict(message=message, sender_id=sender_id, id=dm[x].id, media = video_url, shorted_media_url = attachment['media']['url'], type = 'video')
+                    #     dms.append(d)
+                    #     dms.reverse()
 
             print(str(len(dms)) + " collected")
-            time.sleep(30)
+            time.sleep(10)
             return dms
 
         except Exception as ex:
             print(ex)
-            time.sleep(30)
+            time.sleep(10)
             pass
 
 
@@ -70,10 +70,10 @@ class Twitter:
         print("Deleting dm with id = "+ str(id))
         try:
             self.api.destroy_direct_message(id)
-            time.sleep(10)
+            time.sleep(1)
         except Exception as ex:
             print(ex)
-            time.sleep(10)
+            time.sleep(1)
             pass
 
 
