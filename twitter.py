@@ -90,10 +90,12 @@ class Twitter:
             print("Downloading media...")
             arr = str(media_url).split('/')
             print(arr[len(arr)-1])
-            if type == 'video':
-                arr = arr[len(arr)-1].split("?tag=1")
-                arr = arr[0]
-            elif type == 'photo':
+            # if type == 'video':
+            #     arr = arr[len(arr)-1].split("?tag=1")
+            #     arr = arr[0]
+            # elif type == 'photo':
+            #     arr = arr[len(arr)-1]
+            if type == 'photo':
                 arr = arr[len(arr)-1]
 
             auth = OAuth1(client_key= constants.CONSUMER_KEY,
@@ -110,19 +112,21 @@ class Twitter:
                 tweet = tweet.replace(shorted_media_url, "")
             else:
                 print("kagak ada")
-            if type == 'video':
-                try:
-                    videoTweet = VideoTweet(arr)
-                    videoTweet.upload_init()
-                    videoTweet.upload_append()
-                    videoTweet.upload_finalize()
-                    videoTweet.tweet(tweet)
-                except ValueError as v:
-                    print(v)
-                    print("Exception happen")
-                    pass
-            elif type == 'photo':
-                self.api.update_with_media(filename=arr, status=tweet)
+            # if type == 'video':
+            #     try:
+            #         videoTweet = VideoTweet(arr)
+            #         videoTweet.upload_init()
+            #         videoTweet.upload_append()
+            #         videoTweet.upload_finalize()
+            #         videoTweet.tweet(tweet)
+            #     except ValueError as v:
+            #         print(v)
+            #         print("Exception happen")
+            #         pass
+            # elif type == 'photo':
+            #     self.api.update_with_media(filename=arr, status=tweet)
+            if type == 'photo':
+                 self.api.update_with_media(filename=arr, status=tweet)
             os.remove(arr)
             print("Upload with media success!")
         except Exception as e:
