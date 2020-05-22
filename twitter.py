@@ -57,12 +57,12 @@ class Twitter:
                     #     dms.reverse()
 
             print(str(len(dms)) + " collected")
-            time.sleep(10)
+            # time.sleep(10)
             return dms
 
         except Exception as ex:
             print(ex)
-            time.sleep(3)
+            # time.sleep(3)
             pass
 
 
@@ -70,10 +70,10 @@ class Twitter:
         print("Deleting dm with id = "+ str(id))
         try:
             self.api.destroy_direct_message(id)
-            time.sleep(1)
+            # time.sleep(1)
         except Exception as ex:
             print(ex)
-            time.sleep(1)
+            # time.sleep(1)
             pass
 
 
