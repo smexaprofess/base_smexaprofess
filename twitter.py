@@ -59,8 +59,10 @@ class Twitter:
         print("Deleting dm with id = "+ str(id))
         try:
             self.api.destroy_direct_message(id)
+            time.sleep(20)
         except Exception as ex:
             print(ex)
+            time.sleep(20)
             pass
 
 
