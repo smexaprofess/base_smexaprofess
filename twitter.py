@@ -44,24 +44,14 @@ class Twitter:
                         d = dict(message=message, sender_id=sender_id, id=dm[x].id, media = attachment['media']['media_url'], shorted_media_url = attachment['media']['url'], type = 'photo')
                         dms.append(d)
                         dms.reverse()
-                    # elif media_type == 'video':
-                    #     print("Its a video")
-                    #     attachment = dm[x].message_create['message_data']['attachment']
-                    #     media = dm[x].message_create['message_data']['attachment']['media']
-                    #     media_url = media['video_info']['variants'][0]
-                    #     video_url = media_url['url']
-                    #     print("video url : " + str(video_url))
-                    #     d = dict(message=message, sender_id=sender_id, id=dm[x].id, media = video_url, shorted_media_url = attachment['media']['url'], type = 'video')
-                    #     dms.append(d)
-                    #     dms.reverse()
 
             print(str(len(dms)) + " collected")
-            time.sleep(5)
+            # time.sleep(10)
             return dms
 
         except Exception as ex:
             print(ex)
-            time.sleep(5)
+            # time.sleep(10)
             pass
 
 
@@ -69,10 +59,8 @@ class Twitter:
         print("Deleting dm with id = "+ str(id))
         try:
             self.api.destroy_direct_message(id)
-            time.sleep(5)
         except Exception as ex:
             print(ex)
-            time.sleep(5)
             pass
 
 
@@ -83,11 +71,12 @@ class Twitter:
             print(e)
             pass
 
-    # def report_menfess(self, msg):
-    #     for dm in tweepy.Cursor(self.api.followers_ids, screen_name="Lapor SmexaproFess!").items(1):
-    #         # edit the msg parameter
-    #         self.api.send_direct_message(dm,msg)
-    #         pass
+    def report_menfess(self, msg):
+        try:
+            self.api.send_direct_message(1264020299575488514,msg)
+        except Exception as e:
+            print(e)
+            pass
 
     def post_tweet_with_media(self, tweet, media_url, shorted_media_url, type):
         try:
@@ -95,11 +84,6 @@ class Twitter:
             print("Downloading media...")
             arr = str(media_url).split('/')
             print(arr[len(arr)-1])
-            # if type == 'video':
-            #     arr = arr[len(arr)-1].split("?tag=1")
-            #     arr = arr[0]
-            # elif type == 'photo':
-            #     arr = arr[len(arr)-1]
             if type == 'photo':
                 arr = arr[len(arr)-1]
 
@@ -112,24 +96,11 @@ class Twitter:
                 f.write(r.content)
 
             print("Media downloaded successfully!")
+
             if shorted_media_url in tweet:
                 print("shorted url "+ str(shorted_media_url))
                 tweet = tweet.replace(shorted_media_url, "")
-            else:
-                print("kagak ada")
-            # if type == 'video':
-            #     try:
-            #         videoTweet = VideoTweet(arr)
-            #         videoTweet.upload_init()
-            #         videoTweet.upload_append()
-            #         videoTweet.upload_finalize()
-            #         videoTweet.tweet(tweet)
-            #     except ValueError as v:
-            #         print(v)
-            #         print("Exception happen")
-            #         pass
-            # elif type == 'photo':
-            #     self.api.update_with_media(filename=arr, status=tweet)
+
             if type == 'photo':
                  self.api.update_with_media(filename=arr, status=tweet)
             os.remove(arr)
