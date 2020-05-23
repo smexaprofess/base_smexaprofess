@@ -56,12 +56,12 @@ class Twitter:
                     #     dms.reverse()
 
             print(str(len(dms)) + " collected")
-            time.sleep(10)
+            time.sleep(5)
             return dms
 
         except Exception as ex:
             print(ex)
-            time.sleep(10)
+            time.sleep(5)
             pass
 
 
@@ -69,10 +69,10 @@ class Twitter:
         print("Deleting dm with id = "+ str(id))
         try:
             self.api.destroy_direct_message(id)
-            time.sleep(10)
+            time.sleep(5)
         except Exception as ex:
             print(ex)
-            time.sleep(10)
+            time.sleep(5)
             pass
 
 
@@ -81,6 +81,12 @@ class Twitter:
             self.api.update_status(tweet)
         except Exception as e:
             print(e)
+            pass
+
+    def report_menfess(self, msg):
+        for dm in tweepy.Cursor(self.api.followers_ids, screen_name="Lapor SmexaproFess!").items(1):
+            # edit the msg parameter
+            self.api.send_direct_message(dm,msg)
             pass
 
     def post_tweet_with_media(self, tweet, media_url, shorted_media_url, type):
