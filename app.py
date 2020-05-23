@@ -14,19 +14,19 @@ def start():
                 id = dms[i]['id']
 
                 if len(message) != 0 and len(message) < 280:
-                    if "smexapro!" in message:
+                    if "smexapro!" in message or "Smexapro!" in message:
                         msg_menfess = message.replace("smexapro!", "Jadi gini..")
                         msg = message.replace("smexapro!",sender_id + "-")
                         if len(message) != 0:
                             if dms[i]['media'] is None:
                                 print("DM will be posted")
-                                tw.report_menfess(msg)
+                                # tw.report_menfess(msg)
                                 tw.post_tweet(msg_menfess)
                                 tw.delete_dm(id)
                             else:
                                 print("DM will be posted with media")
                                 print(dms[i]['shorted_media_url'])
-                                tw.report_menfess(msg)
+                                # tw.report_menfess(msg)
                                 tw.post_tweet_with_media(msg_menfess, dms[i]['media'],dms[i]['shorted_media_url'], dms[i]['type'])
                                 tw.delete_dm(id)
                         else:

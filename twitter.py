@@ -83,11 +83,11 @@ class Twitter:
             print(e)
             pass
 
-    def report_menfess(self, msg):
-        for dm in tweepy.Cursor(self.api.followers_ids, screen_name="Lapor SmexaproFess!").items(1):
-            # edit the msg parameter
-            self.api.send_direct_message(dm,msg)
-            pass
+    # def report_menfess(self, msg):
+    #     for dm in tweepy.Cursor(self.api.followers_ids, screen_name="Lapor SmexaproFess!").items(1):
+    #         # edit the msg parameter
+    #         self.api.send_direct_message(dm,msg)
+    #         pass
 
     def post_tweet_with_media(self, tweet, media_url, shorted_media_url, type):
         try:
