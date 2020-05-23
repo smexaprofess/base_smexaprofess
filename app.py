@@ -14,8 +14,8 @@ def start():
                 id = dms[i]['id']
 
                 if len(message) != 0 and len(message) < 280:
-                    if "smexapro!" in message or "Smexapro!" in message:
-                        msg = message.replace("smexapro!" or "Smexapro!",sender_id + "-")
+                    if "smexapro!" in message:
+                        msg = message.replace("smexapro!",sender_id + "-")
                         if len(message) != 0:
                             if dms[i]['media'] is None:
                                 print("DM will be posted")
